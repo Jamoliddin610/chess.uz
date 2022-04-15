@@ -15,16 +15,12 @@ let board = document.querySelector(".board")
 let resultX = document.querySelector('.x-result')
 let resultY = document.querySelector('.y-result')
 
-
-
 boxs.forEach((elem, i) => {
     let box = document.createElement('div');
     box.className = ` box y_${elem.y} x_${elem.x}`
     box.id = i
     board.appendChild(box)
 })
-
-
 
 let cells = document.querySelectorAll(".box")
 cells.forEach((item) => {
@@ -41,15 +37,12 @@ cells.forEach((item) => {
     item.addEventListener('mouseover', () => {
         cells.forEach((elem) => {
             elem.classList.remove("danger")
-
         })
         boxs.forEach((elem, i) => {
             if (i == item.id) {
                 resultX.innerHTML = `X= ${elem.y}`
                 resultY.innerHTML = `Y= ${elem.x}`
                 item.classList.add("danger")
-
-
             }
         })
     })
@@ -57,7 +50,6 @@ cells.forEach((item) => {
         item.classList.remove("danger")
         resultX.innerHTML = `X= 0`
         resultY.innerHTML = `Y= 0`
-
     })
 })
 
@@ -68,6 +60,7 @@ castle.addEventListener("click", () => {
             item.addEventListener('mouseover', () => {
                 if (item.id == i) {
                     cells.forEach((el, id) => {
+                        el.classList.remove('green')
                         if (el.className.includes(`y_${elem.y}`)) {
                             el.classList.add('green')
                         }
@@ -75,7 +68,6 @@ castle.addEventListener("click", () => {
                             el.classList.add('green')
                         }
                     })
-
                 }
             })
             item.addEventListener("mouseout", () => {
@@ -83,7 +75,6 @@ castle.addEventListener("click", () => {
                     cells.forEach((el, id) => {
                         el.classList.remove('green')
                     })
-
                 }
             })
         })
@@ -96,6 +87,7 @@ knight.addEventListener('click', () => {
             item.addEventListener('mouseover', () => {
                 if (item.id == i) {
                     cells.forEach((el, id) => {
+                        el.classList.remove('green')
                         if (el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x + 2}`)) {
                             el.classList.add('green')
                         }
@@ -120,16 +112,7 @@ knight.addEventListener('click', () => {
                         if (el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x - 2}`)) {
                             el.classList.add('green')
                         }
-                        if (el.className.includes(`y_${elem.y}`)) {
-                            el.classList.remove('green')
-                        }
-                        if (el.className.includes(`x_${elem.x}`)) {
-                            el.classList.remove('green')
-                        }
-
-
                     })
-
                 }
             })
             item.addEventListener("mouseout", () => {
@@ -137,16 +120,11 @@ knight.addEventListener('click', () => {
                     cells.forEach((el, id) => {
                         el.classList.remove("green")
                     })
-
                 }
             })
         })
     })
 })
-
-
-
-
 
 let bishop = document.querySelector('#bishop')
 bishop.addEventListener('click', () => {
@@ -155,6 +133,7 @@ bishop.addEventListener('click', () => {
             item.addEventListener('mouseover', () => {
                 if (item.id == i) {
                     cells.forEach((el, id) => {
+                        el.classList.remove('green')
                         for (let i = 0; i < 8; i++) {
                             if (el.className.includes(`y_${elem.y + i}`) && el.className.includes(`x_${elem.x + i}`)) {
                                 el.classList.add('green')
@@ -170,7 +149,6 @@ bishop.addEventListener('click', () => {
                             }
                         }
                     })
-
                 }
             })
             item.addEventListener("mouseout", () => {
@@ -178,15 +156,11 @@ bishop.addEventListener('click', () => {
                     cells.forEach((el, id) => {
                         el.classList.remove('green')
                     })
-
                 }
             })
         })
     })
 })
-
-
-
 
 let queen = document.querySelector("#queen")
 queen.addEventListener('click', () => {
@@ -195,6 +169,7 @@ queen.addEventListener('click', () => {
             item.addEventListener('mouseover', () => {
                 if (item.id == i) {
                     cells.forEach((el, id) => {
+                        el.classList.remove('green')
                         if (el.className.includes(`y_${elem.y}`)) {
                             el.classList.add('green')
                         }
@@ -216,7 +191,6 @@ queen.addEventListener('click', () => {
                             }
                         }
                     })
-
                 }
             })
             item.addEventListener("mouseout", () => {
@@ -229,24 +203,37 @@ queen.addEventListener('click', () => {
         })
     })
 })
-function kingfunc() {
+let king = document.querySelector("#king")
+king.addEventListener('click', () => {
     cells.forEach((item) => {
         boxs.forEach((elem, i) => {
             item.addEventListener('mouseover', () => {
                 if (item.id == i) {
                     cells.forEach((el, id) => {
-                        if (el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x + 1}`) &&
-                            el.className.includes(`y_${elem.y}`) && el.className.includes(`x_${elem.x + 1}`) &&
-                            el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x + 1}`) &&
-                            el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x}`) &&
-                            el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x}`) &&
-                            el.className.includes(`y_${elem.y}`) && el.className.includes(`x_${elem.x - 1}`) &&
-                            el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x - 1}`) &&
-                            el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x - 1}`)
-                        ) {
+                        el.classList.remove('green')
+                        if (el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x - 1}`)) {
                             el.classList.add('green')
-                        } else {
-                            el.classList.remove('green')
+                        } 
+                        if (el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x - 1}`)) {
+                            el.classList.add('green')
+                        }
+                        if (el.className.includes(`y_${elem.y}`) && el.className.includes(`x_${elem.x - 1}`)) {
+                            el.classList.add('green')
+                        }
+                        if (el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x}`)) {
+                            el.classList.add('green')
+                        }
+                        if (el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x}`)) {
+                            el.classList.add('green')
+                        }
+                        if (el.className.includes(`y_${elem.y - 1}`) && el.className.includes(`x_${elem.x + 1}`)) {
+                            el.classList.add('green')
+                        }
+                        if (el.className.includes(`y_${elem.y}`) && el.className.includes(`x_${elem.x + 1}`)) {
+                            el.classList.add('green')
+
+                        } if (el.className.includes(`y_${elem.y + 1}`) && el.className.includes(`x_${elem.x + 1}`)) {
+                            el.classList.add('green')
                         }
                     })
 
@@ -261,7 +248,8 @@ function kingfunc() {
             })
         })
     })
-}
+})
+
 function pathfunc() {
     cells.forEach((item) => {
         boxs.forEach((elem, i) => {
@@ -269,6 +257,7 @@ function pathfunc() {
                 if (item.className.includes(`x_2`)) {
                     if (item.id == i) {
                         cells.forEach((el) => {
+                            el.classList.remove('green')
                             if (el.className.includes(`y_${elem.y}`) && el.className.includes(`x_${elem.x + 1}`)) {
                                 el.classList.add('green')
                             }
@@ -297,3 +286,19 @@ function pathfunc() {
         })
     })
 }
+
+
+
+let count = 0
+let btn_d = document.querySelector(".threed-btn")
+btn_d.addEventListener('click',()=>{
+    board.classList.toggle('chess-3d')
+    if (count == 0) {
+        btn_d.innerHTML = `2D`
+        count++
+    }
+    else{
+        btn_d.innerHTML = `3D`
+        count = 0
+    }
+})
